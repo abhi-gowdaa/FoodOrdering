@@ -1,7 +1,6 @@
 import {  View  } from "react-native";
-import { ProductListItem } from "./ProductListItem"; 
-import products from "./../../../assets/data/products";
-
+import products from "@assets/data/products";
+import { ProductListItem } from "@components/ProductListItem";
 
 export default function TabOneScreen() {
   return (
