@@ -3,6 +3,8 @@ import { Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
 
+//Stack screenOptions is to make headerright button visible acroos all screen (menu,product detail screen)
+
 export default function MenuStack() {
   return (
     <Stack screenOptions={{

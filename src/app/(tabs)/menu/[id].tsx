@@ -1,23 +1,35 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import products from "@assets/data/products";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import Button from "@components/Button";
 
-const sizes = ["S", "M", "L", "XL"];
+import { CartContext } from "../../../providers/CartProvider";
+import { useContext } from "react";
+import { PizzaSize } from "../../../../types";
+
+const sizes:PizzaSize[] = ["S", "M", "L", "XL"];
 
 const productInfo = () => {
   const { id } = useLocalSearchParams();
-  const [selected, setSelected] = useState("M");
+  const [selectedSize, setSelectedSize] = useState<PizzaSize>("M");
 
-  const product = products.find((item) => item.id.toString() === id);
+  const {items,addItem}=useContext(CartContext);
+ const router=useRouter();
+   const product = products.find((item) => item.id.toString() === id);
 
   if (!product) {
     return <Text>product doesnot exist</Text>;
   }
 
   const addToCart = () => {
-    console.warn("hi");
+    if(!product){
+      return;
+    }
+     addItem(product,selectedSize);
+     router.push("/cart")
+      
+    
   };
 
   return (
@@ -29,19 +41,19 @@ const productInfo = () => {
         {sizes.map((size) => (
           <Pressable
             onPress={() => {
-              setSelected(size);
+              setSelectedSize(size);
             }}
             key={size}
             id={size}
             style={[
               styles.size,
-              { backgroundColor: selected === size ? "gainsboro" : "white" },
+              { backgroundColor: selectedSize === size ? "gainsboro" : "white" },
             ]}
           >
             <Text
               style={[
                 styles.sizeText,
-                { color: selected === size ? "black" : "gray" },
+                { color: selectedSize === size ? "black" : "gray" },
               ]}
             >
               {size}
