@@ -1,9 +1,8 @@
-import { StyleSheet, View, Text, Image ,Pressable} from "react-native";
+import { StyleSheet,  Text, Image ,Pressable} from "react-native";
 import Colors from "../constants/Colors";
 import { Product } from "../../types";
-import { Link } from "expo-router";
-import { ScrollViewStyleReset } from 'expo-router/html';
-
+import { Link, useSegments } from "expo-router";
+ 
 export const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 
@@ -13,8 +12,11 @@ type ProductListItemProps = {
 //product(is a property here its a props):Product(is a type)
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
+  const segment=useSegments()
+  //ex ['(admin)', 'menu', '[id]'] this is path segment helps for routing
   return (
-    <Link href={`/menu/${product.id}`} asChild>
+    //redirect to /menu/[id].tsx
+    <Link href={`${segment[0]}/menu/${product.id}`} asChild> 
     <Pressable style={styles.container}>
       <Image
         style={styles.image}
