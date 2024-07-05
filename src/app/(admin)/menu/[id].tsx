@@ -36,34 +36,9 @@ const productInfo = () => {
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Details " + id }} />
       <Image source={{ uri: product.image }} style={styles.image} />
-      <Text>Select size</Text>
-      <View style={styles.sizes}>
-        {sizes.map((size) => (
-          <Pressable
-            onPress={() => {
-              setSelectedSize(size);
-            }}
-            key={size}
-            id={size}
-            style={[
-              styles.size,
-              { backgroundColor: selectedSize === size ? "gainsboro" : "white" },
-            ]}
-          >
-            <Text
-              style={[
-                styles.sizeText,
-                { color: selectedSize === size ? "black" : "gray" },
-              ]}
-            >
-              {size}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
-      <Text style={[styles.price]}>Price:${product.price}</Text>
-      <Button onPress={addToCart} text="Add to Cart" />
-    </View>
+      <Text style={[styles.title]}>{product.name}</Text>
+      <Text style={[styles.price]}>${product.price}</Text>
+     </View>
   );
 };
 
@@ -79,28 +54,16 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 1,
   },
-
+  title:{
+  fontSize:20,
+  fontWeight:'bold'
+  },
   price: {
-    fontSize: 20,
-    fontWeight: "700",
-    marginTop:"auto"
+    fontSize: 18,
+    fontWeight: "bold",
+
   },
-  sizes: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginVertical: 10,
-  },
-  size: {
-    backgroundColor: "gainsboro",
-    width: 50,
-    aspectRatio: 1,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  sizeText: {
-    fontSize: 20,
-    fontWeight: "500",
-    justifyContent: "center",
-  },
+ 
+  
+  
 });

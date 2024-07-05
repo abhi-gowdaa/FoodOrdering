@@ -5,19 +5,43 @@ import Colors from "../../../constants/Colors";
 
 //Stack screenOptions is to make headerright button visible acroos all screen (menu,product detail screen)
 
+
 export default function MenuStack() {
   return (
     <Stack screenOptions={{
       //screen option this make appear anything in all the page
     }}>
       <Stack.Screen name="index" 
-      options={{title:'Menu',
+      options={{
+        title:'menu',
         headerRight: () => (
           <Link href="/cart" asChild>
             <Pressable>
               {({ pressed }) => (
                 <FontAwesome
-                  name="plus-square"
+                  name="plus-square-o"
+                  size={25}
+                  color={Colors.light.tint}
+                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                />
+              )} 
+            </Pressable>
+          </Link>
+        )
+      }}  
+      
+      />
+
+
+<Stack.Screen name="[id]" 
+      options={{
+        title:'menu',
+        headerRight: () => (
+          <Link href="/cart" asChild>
+            <Pressable>
+              {({ pressed }) => (
+                <FontAwesome
+                  name="plus-square-o"
                   size={25}
                   color={Colors.light.tint}
                   style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
