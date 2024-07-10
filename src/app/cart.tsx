@@ -4,10 +4,10 @@ import { StatusBar } from "expo-status-bar";
 import { useCart } from "../providers/CartProvider";
 import CartListItem from "@components/CartListItem";
 import Button from "@components/Button";
+ 
 
 const cartScreen = () => {
   const { items, total } = useCart();
-
   return (
     <View style={{ padding: 10 }}>
       <FlatList
