@@ -42,15 +42,21 @@ export default function TabLayout() {
   
         }}
       />
-      <Tabs.Screen
-        name="two"
+     
+     <Tabs.Screen
+        name="orders/index"
         options={{
-          title: "orders",
+          title: "Orders",
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
-
+ 
       <Tabs.Screen name="index" options={{ href: null }} />
+      
+     
+      {/* <Tabs.Screen name="orders/index" options={{ href: null }} /> */}
+      <Tabs.Screen name="orders/[id]" options={{href:null}}/>
+    
     </Tabs>
   );
 }

@@ -1,16 +1,16 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import React ,{useState} from "react";
 import Button from "@components/Button";
-import { router,Stack } from "expo-router";
+import { router,Stack ,Link} from "expo-router";
 import Colors from "../../constants/Colors";
 
 const signUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
- const onSignIn=()=>{
-  router.push("/signIn")
- }
+//  const onSignIn=()=>{
+//   router.push("/signIn")
+//  }
   return (
     <View style={styles.container}>
         <Stack.Screen options={{ title: 'Sign up' }} />
@@ -19,7 +19,10 @@ const signUp = () => {
       <Text style={styles.label}>Password</Text>
       <TextInput  onChangeText={setPassword} secureTextEntry={true} style={styles.textInput} />   
       <Button text="Create an account"/>
-      <Text style={styles.textButton} onPress={onSignIn}>Sign in</Text>
+      {/* <Text style={styles.textButton} onPress={onSignIn}>Sign in</Text> */}
+      <Link href="/signUp">
+        <Text style={styles.textButton}>Sign in</Text>
+      </Link>
     </View>
   );
 };

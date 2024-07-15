@@ -35,18 +35,23 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="cutlery" color={color} />
           ),
-  
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: "orders",
-          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
 
+      <Tabs.Screen
+        name="orders/index"
+        options={{
+          title: "Orders",
+          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
+        }}
+      />
+ 
       <Tabs.Screen name="index" options={{ href: null }} />
+      
+     
+      {/* <Tabs.Screen name="orders/index" options={{ href: null }} /> */}
+      <Tabs.Screen name="orders/[id]" options={{href:null}}/>
+    
     </Tabs>
   );
 }
