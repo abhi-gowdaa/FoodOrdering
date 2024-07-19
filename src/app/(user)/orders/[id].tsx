@@ -5,7 +5,7 @@ import orders from "@assets/data/orders";
 import { useLocalSearchParams, Stack } from "expo-router";
 import OrderListItem from "@components/OrderListItem";
 
-const OrderDetailScreen = () => {
+export default function OrderDetailsScreen() {
   const { id } = useLocalSearchParams();
   const order = orders.find((o) => o.id.toString() == id);
   if (!order) {
@@ -34,4 +34,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderDetailScreen;

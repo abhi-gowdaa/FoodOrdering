@@ -44,9 +44,10 @@ export default function TabLayout() {
       />
      
      <Tabs.Screen
-        name="orders/index"
+        name="orders"
         options={{
-          title: "Orders",
+          title: 'Orders',
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
@@ -55,8 +56,8 @@ export default function TabLayout() {
       
      
       {/* <Tabs.Screen name="orders/index" options={{ href: null }} /> */}
-      <Tabs.Screen name="orders/[id]" options={{href:null}}/>
-    
+      {/* <Tabs.Screen name="orders/[id]" options={{href:null}}/>
+     */}
     </Tabs>
   );
 }

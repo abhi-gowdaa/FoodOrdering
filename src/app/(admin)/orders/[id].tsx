@@ -1,11 +1,13 @@
 import OrderItemListItem from "@components/OrderItemListItem";
 import React from "react";
-import { Text, StyleSheet, View, FlatList } from "react-native";
+import { Text, StyleSheet, View, FlatList, Pressable } from "react-native";
 import orders from "@assets/data/orders";
 import { useLocalSearchParams, Stack } from "expo-router";
 import OrderListItem from "@components/OrderListItem";
+import Colors from "../../../constants/Colors";
+import { OrderStatusList } from "../../../../types";
 
-const OrderDetailScreen = () => {
+export default function OrderDetailsScreen() {
   const { id } = useLocalSearchParams();
   const order = orders.find((o) => o.id.toString() == id);
   if (!order) {
@@ -14,13 +16,46 @@ const OrderDetailScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: `Order #${order.id}` }} />
-      {/* <OrderListItem order={order} /> this is moved to below flatlist and it is scrolable */} 
+      <Stack.Screen options={{ title: `Order #${id}` }} />
+      {/* <OrderListItem order={order} /> this is moved to below flatlist and it is scrolable */}
       <FlatList
         data={order.order_items}
         renderItem={({ item }) => <OrderItemListItem item={item} />}
         contentContainerStyle={{ gap: 10 }}
-        ListHeaderComponent={()=><OrderListItem order={order} />}
+        ListHeaderComponent={() => <OrderListItem order={order} />}
+        ListFooterComponent={() => (
+          <>
+            <Text style={{ fontWeight: "bold" }}>Status</Text>
+            <View style={{ flexDirection: "row", gap: 5 }}>
+              {OrderStatusList.map((status) => (
+                <Pressable
+                  key={status}
+                  onPress={() => console.warn("Update status")}
+                  style={{
+                    borderColor: Colors.light.tint,
+                    borderWidth: 1,
+                    padding: 10,
+                    borderRadius: 5,
+                    marginVertical: 10,
+                    backgroundColor:
+                      order.status === status
+                        ? Colors.light.tint
+                        : "transparent",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color:
+                        order.status === status ? "white" : Colors.light.tint,
+                    }}
+                  >
+                    {status}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </>
+        )}
       />
     </View>
   );
@@ -34,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderDetailScreen;
+ 
