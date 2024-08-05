@@ -29,9 +29,6 @@ const index = () => {
       <Link href={"/(admin)/menu"} asChild>
         <Button text="Admin" />
       </Link>
-      <Link href={"/(auth)/signIn"} asChild>
-        <Button text="Sign in" />
-      </Link>
       <Button onPress={() => supabase.auth.signOut()} text="Sign out" />
     </View>
   );
